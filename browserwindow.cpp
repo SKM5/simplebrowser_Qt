@@ -489,6 +489,10 @@ void BrowserWindow::closeEvent(QCloseEvent *event)
             return;
         }
     }
+    if (QOpenGLContext *context = QOpenGLContext::currentContext())
+    {
+        context->doneCurrent();
+    }
     event->accept();
     deleteLater();
 }
