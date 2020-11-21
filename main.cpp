@@ -54,6 +54,7 @@
 #include <QApplication>
 #include <QWebEngineProfile>
 #include <QWebEngineSettings>
+#include <QSurfaceFormat>
 
 QUrl commandLineUrlArgument()
 {
@@ -67,6 +68,11 @@ QUrl commandLineUrlArgument()
 
 int main(int argc, char **argv)
 {
+    qputenv("QT_WAYLAND_SHELL_INTEGRATION", "kwayland-shell");
+    QSurfaceFormat format;
+    format.setRenderableType(QSurfaceFormat::OpenGLES);
+    format.setDefaultFormat(format);
+
     QCoreApplication::setOrganizationName("QtExamples");
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
